@@ -1,0 +1,64 @@
+DP - Consonants Count in Sliding Window
+
+Problem Statement:
+
+The program must accept an integer K and a string S containing only alphabets as the input. The program must print the count of consonants in each sliding window of size K in the string S as the output.
+
+Input:
+3
+pineapple
+
+output:
+2 1 1 1 2 3 2
+
+Program:
+
+
+import java.util.*;
+
+public class Hello {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int k = sc.nextInt();
+        String s = sc.next();
+
+        int count = 0;
+
+        for (int i = 0; i < k; i++) {
+            char ch = Character.toLowerCase(s.charAt(i));
+
+            if (ch != 'a' && ch != 'e' && ch != 'i' &&
+                ch != 'o' && ch != 'u') {
+                count++;
+            }
+        }
+
+        ArrayList<Integer> ans = new ArrayList<>();
+        ans.add(count);
+
+        for (int i = k; i < s.length(); i++) {
+
+            char remove = Character.toLowerCase(s.charAt(i - k));
+            char add = Character.toLowerCase(s.charAt(i));
+
+            if (remove != 'a' && remove != 'e' && remove != 'i' &&
+                remove != 'o' && remove != 'u') {
+                count--;
+            }
+
+            if (add != 'a' && add != 'e' && add != 'i' &&
+                add != 'o' && add != 'u') {
+                count++;
+            }
+
+            ans.add(count);
+        }
+
+        for (int i : ans) {
+            System.out.print(i + " ");
+        }
+
+        sc.close();
+    }
+}
