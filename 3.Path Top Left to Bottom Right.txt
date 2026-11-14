@@ -1,0 +1,84 @@
+Path: Top Left to Bottom Right
+
+The program must accept a matrix of size R × C. The matrix contains only 1's and 0's.
+- The cell value 1 indicates the presence of a path.
+- The cell value 0 indicates the presence of a stone (no path).
+- Movement from one cell to another is allowed only in two directions:
+  - Right
+  - Bottom (down)
+The program must print yes if there is a path from the top-left cell to the bottom-right cell, along with the number of paths available.
+Otherwise, the program must print no.
+
+Input:
+
+4 5
+1 1 1 1 0
+0 1 0 0 1
+1 1 0 1 1
+1 1 0 1 1
+
+Output:
+
+no
+
+Input2:
+
+4 5 
+1 1 1 1 0
+0 1 0 1 1
+1 1 0 1 1
+1 1 1 1 1
+
+Output2:
+
+yes 4
+
+PROGRAM:
+
+import java.util.*;
+public class Main {
+    public static void main(String[] args) {
+      Scanner sc=new Scanner(System.in);
+      int r=sc.nextInt();
+      int c=sc.nextInt();
+      int[][] mat=new int[r][c];
+      int[][] path=new int[r][c];
+
+      for(int i=0;i<r;i++){
+        for(int j=0;j<c;j++){
+            mat[i][j]=sc.nextInt();
+            path[i][j]=0;
+        }
+      }
+
+      path[0][0]=mat[0][0];
+
+      for(int i=1;i<r;i++){
+        if(mat[i][0]==1){
+          path[i][0]=path[i-1][0];
+        }
+      }
+
+      for(int i=1;i<c;i++){
+        if(mat[0][i]==1){
+          path[0][i]=path[0][i-1];
+        }
+      }
+
+      for(int i=1;i<r;i++){
+        for(int j=1;j<c;j++){
+
+            if(mat[i][j]==1){
+              path[i][j]=path[i-1][j]+path[i][j-1];
+            }    
+        }
+      }
+
+      if(path[r-1][c-1]==0){
+        System.out.print("no");
+      }else{
+      System.out.print("yes "+path[r-1][c-1]);
+      }
+
+    }
+}
