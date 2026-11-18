@@ -1,0 +1,45 @@
+Boy Chocolate or Ice cream
+
+Problem Statement
+
+A boy can have either a chocolate (C) or an ice-cream (I) on a given day. But to avoid catching cold, his mom has prevented him from having ice-cream on consecutive days.
+Write a program to print the number of ways (W) in which the boy can have chocolate or ice-cream over a period of N days.
+
+Input:
+3
+Output:
+5
+
+Input:
+5
+Output:
+13
+
+Explanation:
+the 5 ways to have over three days are
+C C C
+C C I
+C I C
+I C C
+I C I
+
+Program:
+
+
+import java.util.*;
+public class Main {
+    public static void main(String[] args) {
+      Scanner sc=new Scanner(System.in);
+      int n=sc.nextInt();
+      
+      int chocolate=1;
+      int icecream=1;
+      for(int i=2;i<=n;i++){
+        int newchocolate=chocolate+icecream;
+        int newicecream=chocolate;
+        chocolate=newchocolate;
+        icecream=newicecream;
+      }
+      System.out.print(chocolate+icecream);
+    }
+}
