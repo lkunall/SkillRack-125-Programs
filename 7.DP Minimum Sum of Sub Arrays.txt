@@ -1,0 +1,38 @@
+DP Minimum Sum of Sub Arrays
+
+The program must accept an array of N integers as the input.the program must print the minimum sum of sub-arrays in the given array as the output
+
+Input:
+6
+-5 -2 9 -1 -8 -2
+
+Output:
+-11
+
+Explanation:
+-1-8-2=-11
+
+Program:
+
+import java.util.*;
+public class Main {
+    public static void main(String[] args) {
+      Scanner sc=new Scanner(System.in);
+      int N=sc.nextInt();
+      int[] arr=new int[N];
+      for(int i=0;i<N;i++) arr[i]=sc.nextInt();
+
+      int currsum=arr[0]<=0?arr[0]:0;
+      int minsum=arr[0];
+      for(int i=1;i<N;i++){
+        currsum+=arr[i];
+        if(currsum<minsum){
+          minsum=currsum;
+        }
+        if(currsum>0){
+          currsum=0;
+        }
+      }
+      System.out.print(minsum);
+    }
+}
