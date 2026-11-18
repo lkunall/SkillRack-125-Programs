@@ -1,0 +1,35 @@
+DP Maximum Sum of Sub Arrays
+
+The program must accept an array of N integers as the input.the program must print the maximum sum of sub-arrays in the given array as the output
+
+Input:
+5
+3 2 -2 5 -4
+
+Output:
+8
+
+Explanation:
+3+2+-2+5=8
+
+Program:
+
+import java.util.*;
+public class Main {
+    public static void main(String[] args) {
+      Scanner sc=new Scanner(System.in);
+      int N=sc.nextInt();
+      int[] arr=new int[N];
+      for(int i=0;i<N;i++) arr[i]=sc.nextInt();
+
+      int currsum=arr[0];
+      int maxsum=arr[0];
+      for(int i=1;i<N;i++){
+        currsum=Math.max(currsum+arr[i],arr[i]);
+        if(currsum>maxsum){
+          maxsum=currsum;
+        }
+      }
+      System.out.print(maxsum);
+    }
+}
